@@ -1,0 +1,31 @@
+{
+    "name": "melo",
+    "version": "1.0.0",
+    "description": "A cute music player",
+    "main": "main.js",
+    "author": "ahany",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder"
+    },
+    "devDependencies": {
+        "electron": "^40.6.0",
+        "electron-builder": "^25.1.8"
+    },
+    "build": {
+        "appId": "com.ahany.melo",
+        "directories": {
+            "output": "dist"
+        },
+        "mac": {
+            "category": "public.app-category.music",
+            "icon": "build/icon.icns"
+        },
+        "win": {
+            "icon": "build/icon.ico"
+        }
+    },
+    "dependencies": {
+        "dotenv": "^17.3.1"
+    }
+}

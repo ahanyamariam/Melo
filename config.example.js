@@ -1,0 +1,1 @@
+window.JAMENDO_CLIENT_ID = 'your_key_here';

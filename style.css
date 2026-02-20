@@ -1,0 +1,309 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 292px;
+  height: 460px;
+  overflow: hidden;
+  background: #F7C1F0;
+  font-family: 'Nunito', sans-serif;
+}
+
+.screen { display: none; flex-direction: column; width: 292px; height: 460px; }
+.screen.active { display: flex; }
+
+#player-screen {
+  background: #F7C1F0;
+  padding: 36px 12px 10px 12px;
+  gap: 7px;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.genre-open-btn {
+  background: #CC96BF;
+  border: 2px solid #1a1a1a;
+  box-shadow: 2px 2px 0px #1a1a1a;
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.1s;
+}
+.genre-open-btn:hover  { transform: scale(1.1); }
+.genre-open-btn:active { transform: scale(0.95); }
+
+.song-title-pill {
+  flex: 1;
+  background: #CC96BF;
+  border-radius: 20px;
+  padding: 6px 14px;
+  text-align: center;
+  border: 2px solid #1a1a1a;
+  box-shadow: 3px 3px 0px #1a1a1a;
+}
+.song-title-pill span {
+  font-family: 'Fasthand', cursive;
+  font-size: 15px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+}
+
+.album-art-wrapper {
+  border-radius: 14px;
+  overflow: hidden;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  border: 2px solid #1a1a1a;
+  box-shadow: 3px 3px 0px #1a1a1a;
+}
+.album-art-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #f5e6a3;
+}
+.album-art-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5e6a3, #f0c060);
+  font-size: 56px;
+}
+
+.artist-name {
+  text-align: center;
+  font-size: 11px;
+  color: #7a3a60;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.progress-row {
+  flex-shrink: 0;
+  position: relative;
+  height: 26px;
+  margin: 0 2px;
+}
+.progress-bar-bg {
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 8px;
+  background: #DFA8D0;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1.5px solid #1a1a1a;
+  box-shadow: 2px 2px 0px #1a1a1a;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: #AA719F;
+  border-radius: 10px;
+  width: 0%;
+}
+.heart-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  user-select: none;
+  filter: drop-shadow(1.5px 1.5px 0px #1a1a1a);
+}
+.heart-thumb:active { cursor: grabbing; }
+.heart-thumb svg { width: 22px; height: 22px; pointer-events: none; }
+
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #7a3a60;
+  font-weight: 600;
+  padding: 0 2px;
+  margin-top: -3px;
+  flex-shrink: 0;
+}
+
+.status-msg {
+  text-align: center;
+  font-size: 10px;
+  color: #7a3a60;
+  font-style: italic;
+  height: 13px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.controls-panel {
+  background: #CC96BF;
+  border-radius: 14px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  height: 62px;
+  border: 2px solid #1a1a1a;
+  box-shadow: 3px 3px 0px #1a1a1a;
+}
+.ctrl-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.12s ease;
+  padding: 0;
+}
+.ctrl-btn:hover  { transform: scale(1.1); }
+.ctrl-btn:active { transform: scale(0.93); }
+
+.play-pause-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #B085A7;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.12s ease;
+  box-shadow: 3px 3px 0px #1a1a1a;
+  position: relative;
+}
+.play-pause-btn:hover  { transform: scale(1.06); }
+.play-pause-btn:active {
+  transform: scale(0.96);
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3), 1px 1px 0px #1a1a1a;
+}
+.play-pause-btn::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background: white;
+  z-index: 0;
+}
+.play-pause-btn svg {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+#genre-screen {
+  background: #F7C1F0;
+  padding: 36px 12px 10px 12px;
+  gap: 10px;
+}
+
+.genre-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.genre-back-btn {
+  background: #CC96BF;
+  border: 2px solid #1a1a1a;
+  box-shadow: 2px 2px 0px #1a1a1a;
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.1s;
+}
+.genre-back-btn:hover { transform: scale(1.1); }
+
+.genre-screen-title {
+  font-family: 'Fasthand', cursive;
+  font-size: 18px;
+  color: #7a3a60;
+}
+
+.genre-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  padding: 2px;
+  align-content: start;
+}
+.genre-grid::-webkit-scrollbar { width: 4px; }
+.genre-grid::-webkit-scrollbar-thumb { background: #CC96BF; border-radius: 4px; }
+
+.genre-chip {
+  background: #CC96BF;
+  border: 2px solid #1a1a1a;
+  box-shadow: 2px 2px 0px #1a1a1a;
+  border-radius: 14px;
+  padding: 10px 6px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.1s;
+  transform-origin: center center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  width: 100%;
+}
+.genre-chip:hover  { transform: scale(1.06); background: #b87aae; }
+.genre-chip:active { transform: scale(0.96); }
+.genre-chip.active {
+  background: #7a3a60;
+  color: #fff;
+}
+.genre-chip .genre-icon {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+.genre-chip .genre-icon svg {
+  width: 20px;
+  height: 20px;
+}
